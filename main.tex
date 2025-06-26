@@ -1,6 +1,9 @@
 \input{header}
 
 \begin{document}
+
+%%% MAX %%%
+
 	\section{Partionifolds}
 		A partionifold on a manifold $M$ is a partition of $M$ into connected immersed submanifolds called leaves. \bigskip
 
@@ -12,5 +15,17 @@
 
 		where $L_m$ is the leaf containing the point $m$. \bigskip
 
-		You can have non-vanishing curves which switch between leaves. Let the partionifold be given by smooth hooks (to pick up spagetthi with, don't worry they won't fall off) and the lines $t \mapsto (t, c)$ for all $c \leq 0$. Then the curve which follows one hook to the edge and then continuous along the $x$-axis is non-vanishing and switches between leaves.
+		You can have curves with a non-vanishing derivative which switch between leaves. Let the partionifold be given by smooth hooks (to pick up spagetthi with, don't worry they won't fall off) and the lines $t \mapsto (t, c)$ for all $c \leq 0$. Then the curve which follows one hook to the edge and then continuous along the $x$-axis is non-vanishing and switches between leaves.
+
+%%% ELIAS %%%
+
+	A smooth curve $\gama: \R \to M$ with a derivative vanishing for some $t$ at some point can then switch between any leaves that have the point $m = \gamma(t)$ in their adherence
+
+	Questions:
+	\begin{itemize}
+		\item can a curve with a non-vanishing derivative switch between leaves ? Yes
+		\item why are we interested in those curves?
+		\item what about a derivative vanishing on some interval? Not interesting: the path just stops in this time period, so we only get one possible branching point anyway.
+	\end{itemize}
+
 \end{document}

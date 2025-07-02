@@ -31,6 +31,8 @@
 \section{Notations and definitions}
     In this section we recall some of the basic definitions of differential geometry and introduce the notation we're gonna use in the rest of the report, especially about tangent spaces vector fields.
 
+    Throughout this report the letter $M$ will be reserved for a manifold of dimension $d$.
+
 	\todo{preliminary notations}
 
 	Now we recall one of the definitions of a tangent vector.
@@ -76,6 +78,7 @@
 	\subsection{Tangent map and diffeomorphisms}
 
 	\subsection{Other (things used everywhere)}
+        
 
 		\todo{do we keep this, what do we put here?}
 
@@ -186,6 +189,128 @@
         \label{spaghetti-hooks}
     \end{figure}
 
+    \begin{prop}[Not leaving leaves]
+		    bla bla
+    \end{prop}
+
+    \begin{proof}
+        Let $X$ be a given vector field in $\in \mathfrak{T}(L_\bullet)$, that is:
+        %
+        \begin{align*}
+            X(m) \in T_m L_m
+        \end{align*}
+
+        for all $m \in M$.
+
+        Let $\gamma : I \to M$ be an integral curve of $X$:
+        %
+        \begin{align*}
+            \frac{d \gamma}{dt}(t) = X(\gamma(t))
+        \end{align*}
+
+        which starts at $m_0 \in M$.
+
+        Since $X|_{L_{m_0}}$ is in fact a vector field of $L_{m_0}$ we can find also an integral curve $\lambda$ of $X|_{L_{m_0}}$ starting at $m_0$:
+        %
+        \begin{align*}
+            \begin{cases}
+                \frac{d \lambda}{dt}(t) = X|_{L_{m_0}}(\lambda(t)) = X(\lambda(t)) \\
+                \lambda(0) = m_0 \\
+                \text{im}(\lambda) \subseteq L_{m_0}
+            \end{cases}
+        \end{align*}
+
+        In particular:
+        %
+        \begin{align*}
+            \begin{cases}
+                \frac{d \lambda}{dt}(t) = X(\lambda(t)) \\
+                \lambda(0) = m_0
+            \end{cases}
+        \end{align*}
+
+        which is satisfied also by $\gamma$:
+        %
+        \begin{align*}
+            \begin{cases}
+                \frac{d \gamma}{dt}(t) = X(\gamma(t)) \\
+                \gamma(0) = m_0
+            \end{cases}	
+        \end{align*}
+
+        Using the straightening lemma we can conclude that:
+        %
+        \begin{align*}
+            \gamma(t) = \phi^{-1}(t e_1) = \lambda(t)
+        \end{align*}
+
+        for some coordinate chart $\phi$ satisfying $\phi(m_0) = 0$, and for $t \in (t_0 - \varepsilon, t_0 + \varepsilon)$ for some $\varepsilon > 0$.
+
+        Hence in particular:
+        %
+        \begin{align*}
+            \text{im}(\gamma|_{(t_0 - \varepsilon, t_0 + \varepsilon)}) = \text{im}(\lambda|_{(t_0 - \varepsilon, t_0 + \varepsilon)}) \subseteq L_{m_0}
+        \end{align*}
+
+        i.e.\ $\gamma$ is locally contained in $L_{m_0}$ around $m_0$.
+
+        In fact this means that $\gamma^{-1}(L_{m})$ is open in $I$ for all $m$ since if $n \in \gamma^{-1}(L_{m})$ then $n = \gamma(t)$ for some $t$ and we can repeat the above argument to conclude that there is $\varepsilon > 0$ s.t.\ $(t - \varepsilon, t + \varepsilon) \subseteq \gamma^{-1}(L_m)$.
+
+        Now we can partition the interval $I$ as follows:
+        %
+        \begin{align*}
+            I = \gamma^{-1}(M) = \gamma^{-1}\left(\bigsqcup_{\alpha \in A} L_{m_\alpha}\right) = \bigsqcup_{\alpha \in A} \gamma^{-1}(L_{m_\alpha})
+        \end{align*}
+
+        However this is a partition of $I$ into disjoint open sets, and $I$ is connected. Thus it must be the case that:
+        %
+        \begin{align*}
+            I = \gamma^{-1}(L_{m_\alpha})
+        \end{align*}
+
+        for some $\alpha$.
+
+        In fact since $m_0 \in \text{im}(\gamma) \subseteq L_{m_\alpha}$ it must be the case that $L_{m_\alpha} = L_{m_0}$ and consequently that:
+        %
+        \begin{align*}
+            \text{im}(\gamma) \subseteq L_{m_0}
+        \end{align*}
+    \end{proof}
+
+    \begin{definition}
+        For some $U \subseteq M$ we define the \textbf{restriction of $L_\bullet$ to $U$} as the partitionifold of $U$ where the leaves are given by the connected components of $L_m \cap U$ for each $m \in U$.
+    \end{definition}
+
+    \begin{prop}[Flow of vector field is an isomorphism]
+        Let $L_\bullet$ be a partionifold on $M$. If the flow function $\phi_t^X$ is well-defined on some $U \subseteq M$ then it is an isomorphism of the restriction of $L_\bullet$ to $U$ to the restriction of $L_\bullet$ to $\phi_t^X(U)$.
+    \end{prop}
+    
+    \begin{proof}
+        Let $X \in \mathfrak{T}(L_\bullet)$. Fix some $t$ and assume that there is some $U \subseteq M$ s.t.\ the flow function $\phi_t^X$ is well-defined on $U$. This is an injective function since if $\phi_t^X(m) = \phi_t^X(n)$ then we can follow the flow in reverse and use the uniqueness of the flow to conclude that $m = n$. We also know from proposition 1.1.11 that $\phi_t^X(m) \in L_m$ for all $m \in M$.
+
+        Next we prove that $\phi_t^X$ is a diffeomorphism. In fact it suffices to prove that $\phi_t^X$ is a local diffeomorphism since it has already been proven to be injective. As such we let $m \in M$ be given and aim to prove that $\phi_t^X$ is a diffeomorphism in some open nbhd of $m$.
+
+        We begin by observing that for each $s \in [0, t]$ the straightening lemma allows us to find a coordinate chart $(x_s : U_s \to V_s)$ around $\phi_s^X(m)$ such that:
+%
+        \begin{align*}
+            X(p) = \frac{\partial}{\partial (x_s)_1}(p)
+        \end{align*}
+
+        for each $p \in U_s$.
+        
+        Since the image of the integral curve:
+        %
+        \begin{align*}
+            s \mapsto \phi_s^X(m) \qquad (s \in [0, t])
+        \end{align*}
+
+        is compact we can pass to a finite number of coordinate charts $(x_i : U_i \to V_i)$ around $\phi_{s_i}^X(m)$ for $i \in [0, N]$ s.t.\ $s_0 = 0$, $s_N = t$ and $\{U_i\}_i$ covers the image of the integral curve.
+
+        \textit{I think you should be able to proceed from here by breaking up $\phi_t^X|_{U'} = \phi_{t_1}^X \circ \ldots \circ \phi_{t_N}^X|_{U'}$ for some finite sequence of time-increments $t_i$ s.t.\ $\sum t_i = t$ and finding some open subset $U'$ containing the point $m$ and then expressing each $\phi_{t_i}^X$ by local expressions of the form $p \mapsto x_i^{-1}(t_i e_1 + x_i(p))$ which are clearly diffeomorphisms thus proving that indeed $\phi_t^X|_{U'}$ is the composition of diffeomorphism and thus itself a diffeomorphism.}
+
+        Now if $m, n \in i_U^* L^m$ then in particular they belong to the same connected component. Since $\phi_t^X|_{L_m \cap U}$ is a diffeomorphism onto its image it is in particular a homeomorphsim and it will map connected components to connected components. Hence $\phi_t^X(m)$ and $\phi_t^X(n)$ will both belong to the same connected component also. This component is a connected component of $\phi^X_t(L_m) \cap \phi^X_t(U)$ i.e.\ the leaf $i_{\phi_t^X(U)}^*L^m$.
+    \end{proof}
+
 \section{Strengthening the definition: smooth partitionifolds}
 
 	The importance of {\color{Red}capturing the local behaviour of [...]} leads to the following definition.
@@ -207,138 +332,14 @@
 %%% MAX %%%
 
 	\section{Partionifolds}
-		A partionifold on a manifold $M$ is a partition of $M$ into connected immersed submanifolds called leaves. \bigskip
-
-		In the context of partitionifolds we define the following map:
-%
-		\begin{align*}
-			L_\bullet : M \to \mathcal{P}(M), \quad m \mapsto L_m
-		\end{align*}
-
-		where $L_m$ is the leaf containing the point $m$. \bigskip
-
-		You can have curves with a non-vanishing derivative which switch between leaves. Let the partionifold be given by smooth hooks (to pick up spagetthi with, don't worry they won't fall off) and the lines $t \mapsto (t, c)$ for all $c \leq 0$. Then the curve which follows one hook to the edge and then continuous along the $x$-axis is non-vanishing and switches between leaves. \bigskip
-
-		\subsection{Proposition 1.1.11}	
-		Let $X$ be a given vector field in $\in \mathfrak{T}(L_\bullet)$, that is:
-		%
-		\begin{align*}
-			X(m) \in T_m L_m
-		\end{align*}
-
-		for all $m \in M$. \bigskip
-
-		Let $\gamma : I \to M$ be an integral curve of $X$:
-		%
-		\begin{align*}
-			\frac{d \gamma}{dt}(t) = X(\gamma(t))
-		\end{align*}
-
-		which starts at $m_0 \in M$. \bigskip
-
-		Since $X|_{L_{m_0}}$ is in fact a vector field of $L_{m_0}$ we can find also an integral curve $\lambda$ of $X|_{L_{m_0}}$ starting at $m_0$:
-		%
-		\begin{align*}
-			\begin{cases}
-				\frac{d \lambda}{dt}(t) = X|_{L_{m_0}}(\lambda(t)) = X(\lambda(t)) \\
-				\lambda(0) = m_0 \\
-				\text{im}(\lambda) \subseteq L_{m_0}
-			\end{cases}
-		\end{align*}
-
-		In particular:
-		%
-		\begin{align*}
-			\begin{cases}
-				\frac{d \lambda}{dt}(t) = X(\lambda(t)) \\
-				\lambda(0) = m_0
-			\end{cases}
-		\end{align*}
-
-		which is satisfied also by $\gamma$:
-		%
-		\begin{align*}
-			\begin{cases}
-				\frac{d \gamma}{dt}(t) = X(\gamma(t)) \\
-				\gamma(0) = m_0
-			\end{cases}	
-		\end{align*}
-
-		Using the straightening lemma we can conclude that:
-		%
-		\begin{align*}
-			\gamma(t) = \phi^{-1}(t e_1) = \lambda(t)
-		\end{align*}
-
-		for some coordinate chart $\phi$ satisfying $\phi(m_0) = 0$, and for $t \in (t_0 - \varepsilon, t_0 + \varepsilon)$ for some $\varepsilon > 0$. \bigskip
-
-		Hence in particular:
-		%
-		\begin{align*}
-			\text{im}(\gamma|_{(t_0 - \varepsilon, t_0 + \varepsilon)}) = \text{im}(\lambda|_{(t_0 - \varepsilon, t_0 + \varepsilon)}) \subseteq L_{m_0}
-		\end{align*}
-
-		i.e.\ $\gamma$ is locally contained in $L_{m_0}$ around $m_0$. \bigskip
-
-		In fact this means that $\gamma^{-1}(L_{m})$ is open in $I$ for all $m$ since if $n \in \gamma^{-1}(L_{m})$ then $n = \gamma(t)$ for some $t$ and we can repeat the above argument to conclude that there is $\varepsilon > 0$ s.t.\ $(t - \varepsilon, t + \varepsilon) \subseteq \gamma^{-1}(L_m)$. \bigskip
-
-		Now we can partition the interval $I$ as follows:
-		%
-		\begin{align*}
-			I = \gamma^{-1}(M) = \gamma^{-1}\left(\bigsqcup_{\alpha \in A} L_{m_\alpha}\right) = \bigsqcup_{\alpha \in A} \gamma^{-1}(L_{m_\alpha})
-		\end{align*}
-
-		However this is a partition of $I$ into disjoint open sets, and $I$ is connected. Thus it must be the case that:
-		%
-		\begin{align*}
-			I = \gamma^{-1}(L_{m_\alpha})
-		\end{align*}
-
-		for some $\alpha$. \bigskip
-
-		In fact since $m_0 \in \text{im}(\gamma) \subseteq L_{m_\alpha}$ it must be the case that $L_{m_\alpha} = L_{m_0}$ and consequently that:
-		%
-		\begin{align*}
-			\text{im}(\gamma) \subseteq L_{m_0}
-		\end{align*}
-
-		\begin{flalign*}&&\square\end{flalign*}
-
-	\section{Proposition 1.1.12}
-    \begin{prop}
-        Let $L_\bullet$ be a partionifold on 
-    \end{prop}
-    
-		Let $X \in \mathfrak{T}(L_\bullet)$. Fix some $t$ and assume that there is some $U \subseteq M$ s.t.\ the flow function $\phi_t^X$ is well-defined on $U$. This is an injective function since if $\phi_t^X(m) = \phi_t^X(n)$ then we can follow the flow in reverse and use the uniqueness of the flow to conclude that $m = n$. We also know from proposition 1.1.11 that $\phi_t^X(m) \in L_m$ for all $m \in M$. \bigskip
-
-		Next we prove that $\phi_t^X$ is a diffeomorphism. In fact it suffices to prove that $\phi_t^X$ is a local diffeomorphism since it has already been proven to be injective. As such we let $m \in M$ be given and aim to prove that $\phi_t^X$ is a diffeomorphism in some open nbhd of $m$. \bigskip
-
-		We begin by observing that for each $s \in [0, t]$ the straightening lemma allows us to find a coordinate chart $(x_s : U_s \to V_s)$ around $\phi_s^X(m)$ such that:
-%
-        \begin{align*}
-            X(p) = \frac{\partial}{\partial (x_s)_1}(p)
-        \end{align*}
-
-        for each $p \in U_s$.
-        
-        Since the image of the integral curve:
-		%
-		\begin{align*}
-			s \mapsto \phi_s^X(m) \qquad (s \in [0, t])
-		\end{align*}
-
-		is compact we can pass to a finite number of coordinate charts $(x_i : U_i \to V_i)$ around $\phi_{s_i}^X(m)$ for $i \in [0, N]$ s.t.\ $s_0 = 0$, $s_N = t$ and $\{U_i\}_i$ covers the image of the integral curve. \bigskip
-
-        \todo{I think you should be able to proceed from here by breaking up $\phi_t^X|_{U'} = \phi_{t_1}^X \circ \ldots \circ \phi_{t_N}^X|_{U'}$ for some finite sequence of time-increments $t_i$ s.t.\ $\sum t_i = t$ and finding some open subset $U'$ containing the point $m$ and then expressing each $\phi_{t_i}^X$ by local expressions of the form $p \mapsto x_i^{-1}(t_i e_1 + x_i(p))$ which are clearly diffeomorphisms thus proving that indeed $\phi_t^X|_{U'}$ is the composition of diffeomorphism and thus itself a diffeomorphism.}
-
-        Now if $m, n \in i_U^* L^m$ then in particular they belong to the same connected component. Since $\phi_t^X|_{L_m \cap U}$ is a diffeomorphism onto its image it is in particular a homeomorphsim and it will map connected components to connected components. Hence $\phi_t^X(m)$ and $\phi_t^X(n)$ will both belong to the same connected component also. This component is a connected component of $\phi^X_t(L_m) \cap \phi^X_t(U)$ i.e.\ the leaf $i_{\phi_t^X(U)}^*L^m$.
+		
 
 \newpage
 
 \section{Appendix}
         \subsection{Straightening lemma}
         \begin{prop}[Straightening lemma]
-            Let $X \in \mathfrak{X}(M)$ be a non-vanishing vector field. Then there is a coordinate chart $\phi = (x_1, \ldots, x_n) : U \subseteq M \to V \subseteq \mathbb{R}^n$ such that:
+            Let $X \in \mathfrak{X}(M)$ be a non-vanishing vector field. Then there is a coordinate chart $\phi = (x_1, \ldots, x_d) : U \subseteq M \to V \subseteq \mathbb{R}^n$ such that:
             %
             \begin{align*}
                 X(m) = \frac{\partial}{\partial x_1}(m) = d \phi_m^{-1}(e_1)
@@ -352,7 +353,7 @@
                     X(m) = \sum_i \alpha_i(m) \frac{\partial}{\partial y_i}(m) = \sum_i \alpha_i(m) d \psi_m^{-1}(e_i) = d \psi_m^{-1}\left(\sum_i \alpha_i(m) e_i\right)
                 \end{align*}
     
-                where $\alpha_i : U \to \mathbb{R}$ are smooth functions. \bigskip
+                where $\alpha_i : U \to \mathbb{R}$ are smooth functions.
     
                 Let:
                 %
@@ -366,7 +367,7 @@
                     X(m) = d \psi_m^{-1}\left(\sum_i \tilde{\alpha}_i(v) e_i \right)
                 \end{align*}
     
-                where $v = \psi(m)$. \bigskip
+                where $v = \psi(m)$.
     
                 Now since the vector field $X$ is non-vanishing it must be the case that $\sum_i \tilde{\alpha}_i(v) e_i \neq 0$. Thus we can find a family of linear maps $T_v$ such that:
                 %
@@ -380,9 +381,9 @@
                     \tau_{ij}(v) := (T_v)_{ij}
                 \end{align*}
     
-                are smooth functions. \bigskip
+                are smooth functions.
     
-                (This is essentially since moving $\sum \tilde{\alpha}_i e_i$ to $e_1$ is rotating and scaling depending on $v$) \bigskip
+                (This is essentially since moving $\sum \tilde{\alpha}_i e_i$ to $e_1$ is rotating and scaling depending on $v$)
     
                 Now we want to find $\rho : V \to V$ s.t.\ $d \rho_v = T_v$, which is equivalent to finding $\rho_i$ satisfying:
                 %
@@ -406,7 +407,7 @@
                 Hence by defining:
                 %
                 \begin{align*}
-                    \phi = (x_1, \ldots, x_n) := \rho \circ \psi
+                    \phi = (x_1, \ldots, x_d) := \rho \circ \psi
                 \end{align*}
     
                 we get:
@@ -460,7 +461,7 @@
 
 		\todo{Let's introduce the notation $\frac{\partial{f}}{\partial{\gamma}}(m) := v(f)$}
 
-		If we fix a coordinate chart $(U, x)$ around $m$ then the direction can be explicitely expressed as a vector in $\R^n$.
+		If we fix a coordinate chart $(U, x)$ around $m$ then the direction can be explicitely expressed as a vector in $\R^d$.
 
 		For every $t \in \gamma^{-1}(U) \subset \R$ we have
 		$$
@@ -468,21 +469,21 @@
 		$$
 		where:
 		\begin{itemize}
-			\item $(x \circ \gamma) \in \Cinf(\R, \R^n)$
-			\item $(f \circ x^{-1}) \in \Cinf(\R^n, \R)$
+			\item $(x \circ \gamma) \in \Cinf(\R, \R^d)$
+			\item $(f \circ x^{-1}) \in \Cinf(\R^d, \R)$
 		\end{itemize}
 		By the chain rule we then have
 		$$
-			v(f) = \underbrace{\di[x(m)] \big( f \circ x^{-1} \big)}_{\R^n \to \R} \bigg[ \underbrace{\frac{\d}{\di{t}} \big( x \circ \gamma \big)(t) \Big|_{t=0}}_{\in \R^n} \bigg]
+			v(f) = \underbrace{\di[x(m)] \big( f \circ x^{-1} \big)}_{\R^d \to \R} \bigg[ \underbrace{\frac{\d}{\di{t}} \big( x \circ \gamma \big)(t) \Big|_{t=0}}_{\in \R^d} \bigg]
 		$$
 
 		If we write
 		$$
-			\frac{\d}{\di{t}} \big( x \circ \gamma \big)(t) \Big|_{t=0} = \sum_{i=1}^n a_i e_i \in \R^n
+			\frac{\d}{\di{t}} \big( x \circ \gamma \big)(t) \Big|_{t=0} = \sum_{i=1}^d a_i e_i \in \R^d
 		$$
-		for some $(a_i)_{1 \leq i \leq n}$ we have
+		for some $(a_i)_{1 \leq i \leq d}$ we have
 		$$
-			v(f) = \sum_{i=1}^n a_i \di[x(m)](f \circ x^{-1})[e_i]
+			v(f) = \sum_{i=1}^d a_i \di[x(m)](f \circ x^{-1})[e_i]
 		$$
 
 		We introduce the notations $\frac{\partial{f}}{\partial{x_i}}: U \to \R$ for directional derivative using the coordinate chart $x$ on $U$. We write
@@ -500,15 +501,15 @@
 
 		So we can rewrite:
 		$$
-			v(f) = \sum_{i=1}^n a_i \frac{\partial f}{\partial{x_i}}(m)
+			v(f) = \sum_{i=1}^d a_i \frac{\partial f}{\partial{x_i}}(m)
 		$$
 
 		We can also write $v$ like this:
 		$$
-			v = \sum_{i=1}^n a_i \frac{\partial \,\bullet\,}{\partial{x_i}}(m)
+			v = \sum_{i=1}^d a_i \frac{\partial \,\bullet\,}{\partial{x_i}}(m)
 		$$
 
-		Let $\phi = (\phi_1, \ldots, \phi_n): x(U) \to \phi(x(U))$ any diffeomorphism.\\
+		Let $\phi = (\phi_1, \ldots, \phi_d): x(U) \to \phi(x(U))$ any diffeomorphism.\\
 		We can consider the chart $(U, y)$ where $y = \phi \circ x$.
 		% So $(y_1, \ldots, y_n) = (\phi_1 \circ x, \ldots, \phi_n \circ x)$.
 
@@ -525,15 +526,15 @@
 
 		Using the chain rule we have
 		\begin{align*}
-			\frac{\d}{\di{t}} \big( \phi \circ x \circ \gamma \big)(t) \Big|_{t=0} &= \di[x(m)]{\phi} \Big[ {\textstyle\sum_{i=1}^n a_i e_i} \Big] \\
-			                                                                       &= \frac{\d}{\di{t}} \phi\big( x(m) + {\textstyle t \sum_{i=1}^n a_i e_i} \big) \Big|_{t=0}
+			\frac{\d}{\di{t}} \big( \phi \circ x \circ \gamma \big)(t) \Big|_{t=0} &= \di[x(m)]{\phi} \Big[ {\textstyle\sum_{i=1}^d a_i e_i} \Big] \\
+			                                                                       &= \frac{\d}{\di{t}} \phi\big( x(m) + {\textstyle t \sum_{i=1}^d a_i e_i} \big) \Big|_{t=0}
 		\end{align*}
 
 		Let's now consider a vector field $X \in \X(M)$ and $X|_U$ its restriction to $U$.
 
-		For any point $p \in U$, we have a family $(a_i(p))_{1 \leq i \leq n}$ such that
+		For any point $p \in U$, we have a family $(a_i(p))_{1 \leq i \leq d}$ such that
 		$$
-			X(p) = \sum_{i=1}^n a_i(p) \frac{\partial \,\bullet\,}{\partial{x_i}}(p)
+			X(p) = \sum_{i=1}^d a_i(p) \frac{\partial \,\bullet\,}{\partial{x_i}}(p)
 		$$
 
 		The goal will be to find a 

@@ -12,5 +12,227 @@
 
 		where $L_m$ is the leaf containing the point $m$. \bigskip
 
-		You can have non-vanishing curves which switch between leaves. Let the partionifold be given by smooth hooks (to pick up spagetthi with, don't worry they won't fall off) and the lines $t \mapsto (t, c)$ for all $c \leq 0$. Then the curve which follows one hook to the edge and then continuous along the $x$-axis is non-vanishing and switches between leaves.
+		You can have non-vanishing curves which switch between leaves. Let the partionifold be given by smooth hooks (to pick up spagetthi with, don't worry they won't fall off) and the lines $t \mapsto (t, c)$ for all $c \leq 0$. Then the curve which follows one hook to the edge and then continuous along the $x$-axis is non-vanishing and switches between leaves. \bigskip
+
+		\subsection{Straightening lemma}
+			Let $X \in \mathfrak{X}(M)$ be a non-vanishing vector field. Then there is a coordinate chart $\phi = (x_1, \ldots, x_n) : U \subseteq M \to V \subseteq \mathbb{R}^n$ such that:
+			%
+			\begin{align*}
+				X(m) = \frac{\partial}{\partial x_1}(m) = d \phi_m^{-1}(e_1)
+			\end{align*}
+
+			\textbf{Proof:} \\
+				We begin with an arbitrary coordinate chart $\psi = (y_1, \ldots, y_n) : U \to V$ of $M$ around $m_0 \in M$. In this chart we find that:
+				%
+				\begin{align*}
+					X(m) = \sum_i \alpha_i(m) \frac{\partial}{\partial y_i}(m) = \sum_i \alpha_i(m) d \psi_m^{-1}(e_i) = d \psi_m^{-1}\left(\sum_i \alpha_i(m) e_i\right)
+				\end{align*}
+
+				where $\alpha_i : U \to \mathbb{R}$ are smooth functions. \bigskip
+
+				Let:
+				%
+				\begin{align*}
+					\tilde{\alpha}_i(v) := \alpha_i \circ \psi^{-1}(v)
+				\end{align*}
+
+				then:
+				%
+				\begin{align*}
+					X(m) = d \psi_m^{-1}\left(\sum_i \tilde{\alpha}_i(v) e_i \right)
+				\end{align*}
+
+				where $v = \psi(m)$. \bigskip
+
+				Now since the vector field $X$ is non-vanishing it must be the case that $\sum_i \tilde{\alpha}_i(v) e_i \neq 0$. Thus we can find a family of linear maps $T_v$ such that:
+				%
+				\begin{align*}
+					T_v \left(\sum_i \tilde{\alpha}_i(v) e_i\right) = e_1
+				\end{align*}
+
+				which is smooth in $v$. That is:
+				%
+				\begin{align*}
+					\tau_{ij}(v) := (T_v)_{ij}
+				\end{align*}
+
+				are smooth functions. \bigskip
+
+				(This is essentially since moving $\sum \tilde{\alpha}_i e_i$ to $e_1$ is rotating and scaling depending on $v$) \bigskip
+
+				Now we want to find $\rho : V \to V$ s.t.\ $d \rho_v = T_v$, which is equivalent to finding $\rho_i$:s satisfying:
+				%
+				\begin{align*}
+					\nabla \rho_i = (\tau_{ij})_j
+				\end{align*}
+
+				This can be solved by integration:
+				%
+				\begin{gather*}
+					\int_{0}^{v} \tau_{ij}(\gamma) \cdot d \gamma = \int_{0}^{v} \nabla \rho_i(\gamma) \cdot d \gamma = \int_0^T \sum_j \frac{\partial \rho_i(\gamma(t))}{\partial x_j} \frac{d \gamma_j}{dt}(t) \: dt \\
+					= \int_0^T \frac{d(\rho_i \circ \gamma)}{dt}(t) \: dt = \rho_i(v) - \rho_i(0)
+				\end{gather*}
+
+				to which we can also impose that $\rho_i(0) = 0$ and get:
+				%
+				\begin{align*}
+					\rho_i(v) = \int_{0}^{v} \tau_{ij}(\gamma) \cdot d \gamma
+				\end{align*}
+
+				Hence by defining:
+				%
+				\begin{align*}
+					\phi = (x_1, \ldots, x_n) := \rho \circ \psi
+				\end{align*}
+
+				we get:
+				%
+				\begin{gather*}
+					X(m) = d \psi_m^{-1} \circ T_v^{-1}(e_1) = d \psi_m^{-1} \circ \rho_{\psi(m)}^{-1}(e_1) = d(\rho \circ \psi)_m^{-1}(e_1) \\
+					= d \phi^{-1}_m(e_1) = \frac{\partial}{\partial x_1}(m)
+				\end{gather*}
+
+				which proves the statement.
+
+				\begin{flalign*}&&\square\end{flalign*}
+
+
+
+		\subsection{Proposition 1.1.11}	
+		Let $X$ be a given vector field in $\in \mathfrak{T}(L_\bullet)$, that is:
+		%
+		\begin{align*}
+			X(m) \in T_m L_m
+		\end{align*}
+
+		for all $m \in M$. \bigskip
+
+		Let $\gamma : I \to M$ be an integral curve of $X$:
+		%
+		\begin{align*}
+			\frac{d \gamma}{dt}(t) = X(\gamma(t))
+		\end{align*}
+
+		which starts at $m_0 \in M$. \bigskip
+
+		Since $X|_{L_{m_0}}$ is in fact a vector field of $L_{m_0}$ we can find also an integral curve $\lambda$ of $X|_{L_{m_0}}$ starting at $m_0$:
+		%
+		\begin{align*}
+			\begin{cases}
+				\frac{d \lambda}{dt}(t) = X|_{L_{m_0}}(\lambda(t)) = X(\lambda(t)) \\
+				\lambda(0) = m_0 \\
+				\text{im}(\lambda) \subseteq L_{m_0}
+			\end{cases}
+		\end{align*}
+
+		In particular:
+		%
+		\begin{align*}
+			\begin{cases}
+				\frac{d \lambda}{dt}(t) = X(\lambda(t)) \\
+				\lambda(0) = m_0
+			\end{cases}
+		\end{align*}
+
+		which is satisfied also by $\gamma$:
+		%
+		\begin{align*}
+			\begin{cases}
+				\frac{d \gamma}{dt}(t) = X(\gamma(t)) \\
+				\gamma(0) = m_0
+			\end{cases}	
+		\end{align*}
+
+		Using the straightening lemma we can conclude that:
+		%
+		\begin{align*}
+			\gamma(t) = \phi^{-1}(t e_1) = \lambda(t)
+		\end{align*}
+
+		for some coordinate chart $\phi$ satisfying $\phi(m_0) = 0$, and for $t \in (t_0 - \varepsilon, t_0 + \varepsilon)$ for some $\varepsilon > 0$. \bigskip
+
+		Hence in particular:
+		%
+		\begin{align*}
+			\text{im}(\gamma|_{(t_0 - \varepsilon, t_0 + \varepsilon)}) = \text{im}(\lambda|_{(t_0 - \varepsilon, t_0 + \varepsilon)}) \subseteq L_{m_0}
+		\end{align*}
+
+		i.e.\ $\gamma$ is locally contained in $L_{m_0}$ around $m_0$. \bigskip
+
+		In fact this means that $\gamma^{-1}(L_{m})$ is open in $I$ for all $m$ since if $n \in \gamma^{-1}(L_{m})$ then $n = \gamma(t)$ for some $t$ and we can repeat the above argument to conclude that there is $\varepsilon > 0$ s.t.\ $(t - \varepsilon, t + \varepsilon) \subseteq \gamma^{-1}(L_m)$. \bigskip
+
+		Now we can partition the interval $I$ as follows:
+		%
+		\begin{align*}
+			I = \gamma^{-1}(M) = \gamma^{-1}\left(\bigsqcup_{\alpha \in A} L_{m_\alpha}\right) = \bigsqcup_{\alpha \in A} \gamma^{-1}(L_{m_\alpha})
+		\end{align*}
+
+		However this is a partition of $I$ into disjoint open sets, and $I$ is connected. Thus it must be the case that:
+		%
+		\begin{align*}
+			I = \gamma^{-1}(L_{m_\alpha})
+		\end{align*}
+
+		for some $\alpha$. \bigskip
+
+		In fact since $m_0 \in \text{im}(\gamma) \subseteq L_{m_\alpha}$ it must be the case that $L_{m_\alpha} = L_{m_0}$ and consequently that:
+		%
+		\begin{align*}
+			\text{im}(\gamma) \subseteq L_{m_0}
+		\end{align*}
+
+		\begin{flalign*}&&\square\end{flalign*}
+
+	\section{Proposition 1.1.12}
+		Let $X \in \mathfrak{T}(L_\bullet)$. Fix some $t$ and assume that there is some $U \subseteq M$ s.t.\ the flow function $\phi_t^X$ is well-defined on $U$. This is an injective function since if $\phi_t^X(m) = \phi_t^X(n)$ then we can follow the flow in reverse and use the uniqueness of the flow to conclude that $m = n$. We also know from proposition 1.1.11 that $\phi_t^X(m) \in L_m$ for all $m \in M$. \bigskip
+
+		Next we prove that $\phi_t^X$ is a diffeomorphism. In fact it suffices to prove that $\phi_t^X$ is a local diffeomorphism since it has already been proven to be injective. \bigskip
+
+		We begin by observing that for each $s \in [0, t]$ we can find a coordinate chart $(x_s : U_s \to V_s)$ around $\phi_s^X(m)$. Since the image of the integral curve:
+		%
+		\begin{align*}
+			s \mapsto \phi_s^X(m) \qquad (s \in [0, t])
+		\end{align*}
+
+		is compact we can pass to a finite number of coordinate charts $(x_i : U_i \to V_i)$ around $\phi_{s_i}^X(m)$ for $i \in [0, N]$ s.t.\ $s_0 = 0$, $s_N = t$ and $\{U_i\}_i$ covers the image of the integral curve. \bigskip
+
+		We can then find balls:
+		%
+		\begin{align*}
+			B_{\varepsilon_i}[x_i(\phi_{r_i}^X(m))] \subseteq x_i(U_i \cap U_{i + 1}) \qquad i \in \{0, \ldots, N - 1\}
+		\end{align*}
+
+		Let:
+		%
+		\begin{align*}
+			\varepsilon := \min_i(\varepsilon_i)
+		\end{align*}
+
+		Then:
+		%
+		\begin{align*}
+			B_i := B_\varepsilon[x_i(\phi_{r_i}^X(m))] \subseteq x_i(U_i \cap U_{i + 1}) \qquad i \in \{0, \ldots, N - 1\}
+		\end{align*}
+
+		By defining $r_N := t$ and:
+		%
+		\begin{align*}
+			U'_i := x_i^{-1}(B_i) \qquad i \in \{0, \ldots, N - 1\}
+		\end{align*}
+
+		and $U' := x_0^{-1}(B_\varepsilon(0))$ we may observe that see that $\phi_t^X|_{U'}$ splits as:
+		%
+		\begin{align*}
+			\phi_t^X|_{U'} = \phi_{r_N - r_{N - 1}}^X \circ \ldots \circ \phi_{r_1 - r_0}^X \circ \phi_{r_0}^X|_{U'} = \phi_{r_N - r_{N - 1}}^X \circ \ldots \circ \phi_{r_1 - r_0}^X|_{U_0} \circ \phi_{r_0}^X|_{U'}
+		\end{align*}
+
+
+
+		As such we consider some coordinate chart $(x : U' \to V')$ around $m \in U$. Then let $U''$ be an open subset of $U'$ containing $m$ which is s.t.\ there exists $N \in \mathbb{N}$ s.t.\ $\frac{t}{N}e_1 + v \in V'$ for all $v \in V'' := x(U'')$. This can be utilized due to the fact that $\phi_t^X$ can be split as follows: 
+		%
+		\begin{align*}
+			\phi_t^X = \underbrace{\phi_{t/N}^X \circ \ldots \circ \phi_{t/N}^X}_{\text{$N$ times}}
+		\end{align*}
+
+		Then 
 \end{document}

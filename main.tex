@@ -9,11 +9,13 @@
        {\LARGE
        \bf
        A Short Introduction into Singular Foliations from the Perspective of Partitionifolds
+       }
 
        \vspace{1cm}
 
        {\large
-       \textbf{Elias Garcia-Naze \& Max Sundblad}
+       \textbf{Elias Garcia-\,\!-Naze \& Max Sundblad}
+       }
 
        \vspace{0.5cm}
 
@@ -70,10 +72,41 @@
     
 	\todo{how do we organize this?}
 
-	\subsection{Tangent space}
-        
-
 	\subsection{Vector field}
+
+	\begin{definition}
+		Let $X \in \X(M)$.
+		We say that $\gamma \in \Cinf(J,M)$ (for some interval $J \subset \R$) is an \textbf{integral curve} of $X$ if for every $t \in J$ we have
+		$$
+			X(\gamma(t)) = \frac{\partial \bullet}{\partial \gamma}(t)
+		$$
+		
+		\todo{existence of an integral curve passing through any point where the vector field doesn't vanish: straightening lemma then pullback of straight lines (well, if the vector field vanishes we have the fixed curve)}
+
+		\todo{unicity of such an integral curve: I don't know}
+
+		\todo{def of a complete vector field}
+
+		\todo{def of a maximal integral curve}
+
+		We say that the integral curve $\gamma$ is \textbf{starting from} the point $\gamma(0) \in M$.
+	\end{definition}
+
+	Here are two really important properties about integral curves, that rely on the straigthening lemma.
+
+	\begin{prop}
+		Any vector field $X \in \X$ admits an integral curve starting from $m$ and defined on some open interval.
+	\end{prop}
+
+	\begin{prop}
+		Any two integral curves $\gamma: I \to M$ and $\lambda: J \to M$ of a vector field $X \in \X(M)$ starting from the same point are matching on the interval $I \cap J$.
+	\end{prop}
+
+	Because of this we can define the notion of maximal integral curve.
+
+	\begin{definition}
+		For some vector field $X \in \X(M)$ The maximal integral curve starting from a point $m \in M$ is the integral biggest integral curve $\gamma$
+	\end{definition}
 
 	\subsection{Tangent map and diffeomorphisms}
 
@@ -587,26 +620,6 @@
 	$$
 
 	The first one as the advantage of being able to write the following definition:
-
-	\begin{definition}
-		Let $X \in \X(M)$.
-		We say that $\gamma \in \Cinf(J,M)$ (for some $J \subset \R$) is an \textbf{integral curve} of $X$ if for every $t \in J$ we have
-		$$
-			X(\gamma(t)) = \frac{\partial \bullet}{\partial \gamma}(t)
-		$$
-
-		\todo{What happens when $X$ vanishes at some $\gamma(t)$?}
-		
-		\todo{existence of an integral curve passing through any point where the vector field doesn't vanish: straightening lemma then pullback of straight lines (well, if the vector field vanishes we have the fixed curve)}
-
-		\todo{unicity of such an integral curve: I don't know}
-
-		\todo{def of a complete vector field}
-
-		\todo{def of a maximal integral curve}
-
-		\todo{def integral curve from a point}
-	\end{definition}
 
 	\begin{definition}
 		Let $X \in \X(M)$ and $t \in \R$.

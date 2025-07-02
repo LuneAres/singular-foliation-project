@@ -1,0 +1,15 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{}%
+\contentsline {section}{\numberline {2}Notations and definitions}{2}{}%
+\contentsline {subsection}{\numberline {2.1}Vector field}{3}{}%
+\contentsline {subsection}{\numberline {2.2}Tangent map and diffeomorphisms}{4}{}%
+\contentsline {subsection}{\numberline {2.3}Other (things used everywhere)}{4}{}%
+\contentsline {section}{\numberline {3}A first approach: Partitionifolds}{4}{}%
+\contentsline {section}{\numberline {4}Strengthening the definition: smooth partitionifolds}{9}{}%
+\contentsline {section}{\numberline {5}Partionifolds}{12}{}%
+\contentsline {section}{\numberline {6}Appendix}{13}{}%
+\contentsline {subsection}{\numberline {6.1}Straightening lemma}{13}{}%
+\contentsline {section}{\numberline {7}Random notes}{16}{}%
+\contentsline {subsection}{\numberline {7.1}Tangent space and vector fields}{16}{}%
+\contentsline {section}{\numberline {8}Notations}{19}{}%
+\contentsline {section}{\numberline {9}Kinda clean?}{20}{}%
+\contentsline {section}{\numberline {10}List of steps}{20}{}%

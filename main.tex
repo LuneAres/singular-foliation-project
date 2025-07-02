@@ -2,15 +2,74 @@
 
 \begin{document}
 
-\section{Introduction}
+\begin{titlepage}
+   \begin{center}
+       \vspace*{4cm}
 
-	\todo{write it. Introduction to singular foliation through partitionifold. Based on the first chapter of the book [...]}
+       {\LARGE
+       \bf
+       A Short Introduction into Singular Foliations from the Perspective of Partitionifolds
+
+       \vspace{1cm}
+
+       {\large
+       \textbf{Elias Garcia-Naze \& Max Sundblad}
+
+       \vspace{0.5cm}
+
+       July 2025
+   \end{center}
+\end{titlepage}
+
+\tableofcontents
+
+\section{Introduction}
+    Singular foliations are a generalization of regular foliations in which leaves are allowed to have different dimensions. Whilst regular foliations have sparked great interest and research for a long time, singular foliations have not been as comprehensively studied until very recently. This might have to do with the difficulty of finding a good definition for them. This is precisely the mission which was undertaken by a few mathematicians in the 60s and 70s. After the research into the topic lost its impetus and lay dormant until 2000s when singular foliations saw a sort of revival coming from non-commutative geometry.
+
+    In this report we will study singular foliations from the lens of so called partitionifolds. We will first look at their general case and then also with a sort of smooth condition imposed on them.
 
 \section{Notations and definitions}
+    In this section we recall some of the basic definitions of differential geometry and introduce the notation we're gonna use in the rest of the report, especially about tangent spaces vector fields.
 
+	\todo{preliminary notations}
+
+	Now we recall one of the definitions of a tangent vector.
+
+	\begin{definition}
+		Let $m \in M$.
+		We call \textbf{tangent space of $M$ at the point $m$} (written $\T_m{M}$) the set of ``\emph{directional derivatives}'', or rather ``\emph{path derivatives}'' (the direction is described by a smooth path in $M$).
+        
+		This means that any \textbf{tangent vector} $v \in \T_m{M}$ is a function $v: \Cinf(M) \to \R$ defined by
+		$$
+			\forall f \in \Cinf(M), \quad v(f) = \frac{\d}{\di{t}} f(\gamma(t)) \Big|_{t=0}
+		$$
+		for a path $\gamma \in \Cinf(\R, M)$ such that $\gamma(0) = m$.
+	\end{definition}
+
+	\begin{notation}
+		Let $\gamma \in \Cinf(J, M)$ (where $J \subset \R$ is an open subset, often taken to be an interval), and $t_0 \in J$.
+		As a shorthand for the path derivative along $\gamma$ at time $t_0$ of a function $f \in \Cinf(M)$ we write 
+		$$
+			\frac{\partial f}{\partial \gamma}(t_0) := \frac{\d}{\di{t}} f(\gamma(t)) \Big|_{t=t_0}
+		$$
+
+		Meaning that for any $m \in M$ a tangent vector $v \in \T_m{M}$ is of the form
+		$$
+			v = \frac{\partial \bullet}{\partial \gamma}(0)
+		$$
+		for a path $\gamma \in \Cinf(\R, M)$ such that $\gamma(0) = m$.
+	\end{notation}
+
+	\todo{local form, standardization}
+
+	Let's define the tangent bundle quickly
+
+	\todo{tangent bundle}
+    
 	\todo{how do we organize this?}
 
 	\subsection{Tangent space}
+        
 
 	\subsection{Vector field}
 
@@ -26,7 +85,7 @@
 		\end{itemize}
 
 
-\section{A first approach: partitionifolds}
+\section{A first approach: Partitionifolds}
 
 	Here we introduce the notion of partitionifold, give some examples, non-examples and properties. We also show {\color{Red}one of the principal shortcomings} of this first definition partitionifold, that'll motivate the introduction of smooth partitionifolds in the next section.
 
@@ -66,7 +125,7 @@
 
 	\todo{put lasagnas somewhere}
 
-	A really inconvenient thing about this definition is that a path $\gamma J \to \R$ that is tangent to the leaf $L_{\gamma(t)}$ at any time $t \in J$ isn't guaranteed to be contained in a single leaf.
+	A really inconvenient thing about this definition is that a path $\gamma : J \to \R$ that is tangent to the leaf $L_{\gamma(t)}$ at any time $t \in J$ isn't guaranteed to be contained in a single leaf.
 
 	\begin{example}
 		In the ``T'' partitionifold, we can consider the path
@@ -91,7 +150,7 @@
 		
 		The derivative of $\gamma$ at $t=0$ is indeed $(0,0)$ since
 		$$
-			\lim_{t \to \infty} \frac{1}{t^3} e^{-1/t^2} = 0
+			\lim_{t \to 0} \frac{1}{t^3} e^{-1/t^2} = 0
 		$$
 		{\color{Red}I'm not sure that the continuity argument really works. Otherwise you just do the calculations using the left an right limit definitions for the derivative, and the exponential obliterates the $1/t$, giving you zero}
 
@@ -115,17 +174,24 @@
 		$$
 		\begin{cases}
 			L_{(x,y)} = \R \times \{y\}            &\text{ if } y \leq 0 \quad \text{(the spaghetti)} \\
-			\text{\todo{describe the hooks somehow}}
+			\text{As in figure \ref{spaghetti-hooks}}
 		\end{cases}
 		$$
 	\end{example}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\linewidth]{images/spaghetti-hooks.png}
+        \caption{Spaghetti hook foliation}
+        \label{spaghetti-hooks}
+    \end{figure}
 
 \section{Strengthening the definition: smooth partitionifolds}
 
 	The importance of {\color{Red}capturing the local behaviour of [...]} leads to the following definition.
 
 	\begin{definition}
-		A partitionifold $(M, L_\bullet)$ is called \textbf{smooth partitionifold} if for any $m \in M$ and any tangent vector $v \in \T_m L_m$ there exists a vector field $X \in \X(M)$ such $X(m) = v$ and that is tangent to all the leaves (i.e. for any $p \in M$ $X(p) \in \T_p L_p$)
+		A partitionifold $(M, L_\bullet)$ is called \textbf{smooth partitionifold} if for any $m \in M$ and any tangent vector $v \in \T_m L_m$ there exists a vector field $X \in \X(U)$ defined on a nbhd $U$ of $m$ s.t.\ $X(m) = v$ and that is tangent to all the leaves in $U$, i.e.\ $X(p) \in \T_p L_p$ for any $p \in U$.
 
 		\todo{in the book they use a local vector space, we should probably do that too if a local vector space tangent to all leaves can't necessarily be extended to a global one}
 	\end{definition}
@@ -152,88 +218,6 @@
 		where $L_m$ is the leaf containing the point $m$. \bigskip
 
 		You can have curves with a non-vanishing derivative which switch between leaves. Let the partionifold be given by smooth hooks (to pick up spagetthi with, don't worry they won't fall off) and the lines $t \mapsto (t, c)$ for all $c \leq 0$. Then the curve which follows one hook to the edge and then continuous along the $x$-axis is non-vanishing and switches between leaves. \bigskip
-
-		\begin{prop}[Straightening lemma]
-			Let $X \in \mathfrak{X}(M)$ be a non-vanishing vector field. Then there is a coordinate chart $\phi = (x_1, \ldots, x_n) : U \subseteq M \to V \subseteq \mathbb{R}^n$ such that:
-			%
-			\begin{align*}
-				X(m) = \frac{\partial}{\partial x_1}(m) = d \phi_m^{-1}(e_1)
-			\end{align*}
-		\end{prop}
-
-		\begin{proof}
-				We begin with an arbitrary coordinate chart $\psi = (y_1, \ldots, y_n) : U \to V$ of $M$ around $m_0 \in M$. In this chart we find that:
-				%
-				\begin{align*}
-					X(m) = \sum_i \alpha_i(m) \frac{\partial}{\partial y_i}(m) = \sum_i \alpha_i(m) d \psi_m^{-1}(e_i) = d \psi_m^{-1}\left(\sum_i \alpha_i(m) e_i\right)
-				\end{align*}
-
-				where $\alpha_i : U \to \mathbb{R}$ are smooth functions. \bigskip
-
-				Let:
-				%
-				\begin{align*}
-					\tilde{\alpha}_i(v) := \alpha_i \circ \psi^{-1}(v)
-				\end{align*}
-
-				then:
-				%
-				\begin{align*}
-					X(m) = d \psi_m^{-1}\left(\sum_i \tilde{\alpha}_i(v) e_i \right)
-				\end{align*}
-
-				where $v = \psi(m)$. \bigskip
-
-				Now since the vector field $X$ is non-vanishing it must be the case that $\sum_i \tilde{\alpha}_i(v) e_i \neq 0$. Thus we can find a family of linear maps $T_v$ such that:
-				%
-				\begin{align*}
-					T_v \left(\sum_i \tilde{\alpha}_i(v) e_i\right) = e_1
-				\end{align*}
-
-				which is smooth in $v$. That is:
-				%
-				\begin{align*}
-					\tau_{ij}(v) := (T_v)_{ij}
-				\end{align*}
-
-				are smooth functions. \bigskip
-
-				(This is essentially since moving $\sum \tilde{\alpha}_i e_i$ to $e_1$ is rotating and scaling depending on $v$) \bigskip
-
-				Now we want to find $\rho : V \to V$ s.t.\ $d \rho_v = T_v$, which is equivalent to finding $\rho_i$ satisfying:
-				%
-				\begin{align*}
-					\nabla \rho_i = (\tau_{ij})_j
-				\end{align*}
-
-				This can be solved by integration:
-				%
-				\begin{gather*}
-					\int_{0}^{v} \tau_{ij}(\gamma) \cdot d \gamma = \int_{0}^{v} \nabla \rho_i(\gamma) \cdot d \gamma = \int_0^T \sum_j \frac{\partial \rho_i(\gamma(t))}{\partial x_j} \frac{d \gamma_j}{dt}(t) \: dt \\
-					= \int_0^T \frac{d(\rho_i \circ \gamma)}{dt}(t) \: dt = \rho_i(v) - \rho_i(0)
-				\end{gather*}
-
-				to which we can also impose that $\rho_i(0) = 0$ and get:
-				%
-				\begin{align*}
-					\rho_i(v) = \int_{0}^{v} \tau_{ij}(\gamma) \cdot d \gamma
-				\end{align*}
-
-				Hence by defining:
-				%
-				\begin{align*}
-					\phi = (x_1, \ldots, x_n) := \rho \circ \psi
-				\end{align*}
-
-				we get:
-				%
-				\begin{gather*}
-					X(m) = d \psi_m^{-1} \circ T_v^{-1}(e_1) = d \psi_m^{-1} \circ \rho_{\psi(m)}^{-1}(e_1) = d(\rho \circ \psi)_m^{-1}(e_1) \\
-					= d \phi^{-1}_m(e_1) = \frac{\partial}{\partial x_1}(m)
-				\end{gather*}
-
-				which proves the statement.
-		\end{proof}
 
 		\subsection{Proposition 1.1.11}	
 		Let $X$ be a given vector field in $\in \mathfrak{T}(L_\bullet)$, that is:
@@ -321,11 +305,23 @@
 		\begin{flalign*}&&\square\end{flalign*}
 
 	\section{Proposition 1.1.12}
+    \begin{prop}
+        Let $L_\bullet$ be a partionifold on 
+    \end{prop}
+    
 		Let $X \in \mathfrak{T}(L_\bullet)$. Fix some $t$ and assume that there is some $U \subseteq M$ s.t.\ the flow function $\phi_t^X$ is well-defined on $U$. This is an injective function since if $\phi_t^X(m) = \phi_t^X(n)$ then we can follow the flow in reverse and use the uniqueness of the flow to conclude that $m = n$. We also know from proposition 1.1.11 that $\phi_t^X(m) \in L_m$ for all $m \in M$. \bigskip
 
-		Next we prove that $\phi_t^X$ is a diffeomorphism. In fact it suffices to prove that $\phi_t^X$ is a local diffeomorphism since it has already been proven to be injective. \bigskip
+		Next we prove that $\phi_t^X$ is a diffeomorphism. In fact it suffices to prove that $\phi_t^X$ is a local diffeomorphism since it has already been proven to be injective. As such we let $m \in M$ be given and aim to prove that $\phi_t^X$ is a diffeomorphism in some open nbhd of $m$. \bigskip
 
-		We begin by observing that for each $s \in [0, t]$ we can find a coordinate chart $(x_s : U_s \to V_s)$ around $\phi_s^X(m)$. Since the image of the integral curve:
+		We begin by observing that for each $s \in [0, t]$ the straightening lemma allows us to find a coordinate chart $(x_s : U_s \to V_s)$ around $\phi_s^X(m)$ such that:
+%
+        \begin{align*}
+            X(p) = \frac{\partial}{\partial (x_s)_1}(p)
+        \end{align*}
+
+        for each $p \in U_s$.
+        
+        Since the image of the integral curve:
 		%
 		\begin{align*}
 			s \mapsto \phi_s^X(m) \qquad (s \in [0, t])
@@ -333,85 +329,97 @@
 
 		is compact we can pass to a finite number of coordinate charts $(x_i : U_i \to V_i)$ around $\phi_{s_i}^X(m)$ for $i \in [0, N]$ s.t.\ $s_0 = 0$, $s_N = t$ and $\{U_i\}_i$ covers the image of the integral curve. \bigskip
 
-		We can then find balls:
-		%
-		\begin{align*}
-			B_{\varepsilon_i}[x_i(\phi_{r_i}^X(m))] \subseteq x_i(U_i \cap U_{i + 1}) \qquad i \in \{0, \ldots, N - 1\}
-		\end{align*}
+        \todo{I think you should be able to proceed from here by breaking up $\phi_t^X|_{U'} = \phi_{t_1}^X \circ \ldots \circ \phi_{t_N}^X|_{U'}$ for some finite sequence of time-increments $t_i$ s.t.\ $\sum t_i = t$ and finding some open subset $U'$ containing the point $m$ and then expressing each $\phi_{t_i}^X$ by local expressions of the form $p \mapsto x_i^{-1}(t_i e_1 + x_i(p))$ which are clearly diffeomorphisms thus proving that indeed $\phi_t^X|_{U'}$ is the composition of diffeomorphism and thus itself a diffeomorphism.}
 
-		Let:
-		%
-		\begin{align*}
-			\varepsilon := \min_i(\varepsilon_i)
-		\end{align*}
-
-		Then:
-		%
-		\begin{align*}
-			B_i := B_\varepsilon[x_i(\phi_{r_i}^X(m))] \subseteq x_i(U_i \cap U_{i + 1}) \qquad i \in \{0, \ldots, N - 1\}
-		\end{align*}
-
-		By defining $r_N := t$ and:
-		%
-		\begin{align*}
-			U'_i := x_i^{-1}(B_i) \qquad i \in \{0, \ldots, N - 1\}
-		\end{align*}
-
-		and $U' := x_0^{-1}(B_\varepsilon(0))$ we may observe that $\phi_t^X|_{U'}$ splits as:
-		%
-		\begin{align*}
-			\phi_t^X|_{U'} = \phi_{r_N - r_{N - 1}}^X \circ \ldots \circ \phi_{r_1 - r_0}^X \circ \phi_{r_0}^X|_{U'} = \phi_{r_N - r_{N - 1}}^X \circ \ldots \circ \phi_{r_1 - r_0}^X|_{U_0} \circ \phi_{r_0}^X|_{U'}
-		\end{align*}
-
-		As such we consider some coordinate chart $(x : U' \to V')$ around $m \in U$. Then let $U''$ be an open subset of $U'$ containing $m$ which is s.t.\ there exists $N \in \mathbb{N}$ s.t.\ $\frac{t}{N}e_1 + v \in V'$ for all $v \in V'' := x(U'')$. This can be utilized due to the fact that $\phi_t^X$ can be split as follows: 
-		%
-		\begin{align*}
-			\phi_t^X = \underbrace{\phi_{t/N}^X \circ \ldots \circ \phi_{t/N}^X}_{\text{$N$ times}}
-		\end{align*}
-
-		Then
+        Now if $m, n \in i_U^* L^m$ then in particular they belong to the same connected component. Since $\phi_t^X|_{L_m \cap U}$ is a diffeomorphism onto its image it is in particular a homeomorphsim and it will map connected components to connected components. Hence $\phi_t^X(m)$ and $\phi_t^X(n)$ will both belong to the same connected component also. This component is a connected component of $\phi^X_t(L_m) \cap \phi^X_t(U)$ i.e.\ the leaf $i_{\phi_t^X(U)}^*L^m$.
 
 \newpage
+
+\section{Appendix}
+        \subsection{Straightening lemma}
+        \begin{prop}[Straightening lemma]
+            Let $X \in \mathfrak{X}(M)$ be a non-vanishing vector field. Then there is a coordinate chart $\phi = (x_1, \ldots, x_n) : U \subseteq M \to V \subseteq \mathbb{R}^n$ such that:
+            %
+            \begin{align*}
+                X(m) = \frac{\partial}{\partial x_1}(m) = d \phi_m^{-1}(e_1)
+            \end{align*}
+        \end{prop}
+    
+        \begin{proof}
+                We begin with an arbitrary coordinate chart $\psi = (y_1, \ldots, y_n) : U \to V$ of $M$ around $m_0 \in M$. In this chart we find that:
+                %
+                \begin{align*}
+                    X(m) = \sum_i \alpha_i(m) \frac{\partial}{\partial y_i}(m) = \sum_i \alpha_i(m) d \psi_m^{-1}(e_i) = d \psi_m^{-1}\left(\sum_i \alpha_i(m) e_i\right)
+                \end{align*}
+    
+                where $\alpha_i : U \to \mathbb{R}$ are smooth functions. \bigskip
+    
+                Let:
+                %
+                \begin{align*}
+                    \tilde{\alpha}_i(v) := \alpha_i \circ \psi^{-1}(v)
+                \end{align*}
+    
+                then:
+                %
+                \begin{align*}
+                    X(m) = d \psi_m^{-1}\left(\sum_i \tilde{\alpha}_i(v) e_i \right)
+                \end{align*}
+    
+                where $v = \psi(m)$. \bigskip
+    
+                Now since the vector field $X$ is non-vanishing it must be the case that $\sum_i \tilde{\alpha}_i(v) e_i \neq 0$. Thus we can find a family of linear maps $T_v$ such that:
+                %
+                \begin{align*}
+                    T_v \left(\sum_i \tilde{\alpha}_i(v) e_i\right) = e_1
+                \end{align*}
+    
+                which is smooth in $v$. That is:
+                %
+                \begin{align*}
+                    \tau_{ij}(v) := (T_v)_{ij}
+                \end{align*}
+    
+                are smooth functions. \bigskip
+    
+                (This is essentially since moving $\sum \tilde{\alpha}_i e_i$ to $e_1$ is rotating and scaling depending on $v$) \bigskip
+    
+                Now we want to find $\rho : V \to V$ s.t.\ $d \rho_v = T_v$, which is equivalent to finding $\rho_i$ satisfying:
+                %
+                \begin{align*}
+                    \nabla \rho_i = (\tau_{ij})_j
+                \end{align*}
+    
+                This can be solved by integration:
+                %
+                \begin{gather*}
+                    \int_{0}^{v} \tau_{ij}(\gamma) \cdot d \gamma = \int_{0}^{v} \nabla \rho_i(\gamma) \cdot d \gamma = \int_0^T \sum_j \frac{\partial \rho_i(\gamma(t))}{\partial x_j} \frac{d \gamma_j}{dt}(t) \: dt \\
+                    = \int_0^T \frac{d(\rho_i \circ \gamma)}{dt}(t) \: dt = \rho_i(v) - \rho_i(0)
+                \end{gather*}
+    
+                to which we can also impose that $\rho_i(0) = 0$ and get:
+                %
+                \begin{align*}
+                    \rho_i(v) = \int_{0}^{v} \tau_{ij}(\gamma) \cdot d \gamma
+                \end{align*}
+    
+                Hence by defining:
+                %
+                \begin{align*}
+                    \phi = (x_1, \ldots, x_n) := \rho \circ \psi
+                \end{align*}
+    
+                we get:
+                %
+                \begin{gather*}
+                    X(m) = d \psi_m^{-1} \circ T_v^{-1}(e_1) = d \psi_m^{-1} \circ \rho_{\psi(m)}^{-1}(e_1) = d(\rho \circ \psi)_m^{-1}(e_1) \\
+                    = d \phi^{-1}_m(e_1) = \frac{\partial}{\partial x_1}(m)
+                \end{gather*}
+    
+                which proves the statement.
+        \end{proof}
+
 %%% ELIAS %%%
-
-\section{Notations and definitions}
-
-	In this section we recall some of the basic definitions of differential geometry and introduce the notation we're gonna use in the rest of the report, especially about tangent spaces vector fields.
-
-	\todo{preliminary notations}
-
-	Now we recall one of the definitions of a tangent vector.
-
-	\begin{definition}
-		Let $m \in M$.
-		We call \textbf{tangent space of $M$ at the point $m$} (written $\T_m{M}$) the set of ``\emph{directional derivatives}'', or rather ``\emph{path derivatives}'' (the direction is described by a smooth path in $M$). \\
-		Meaning that any \textbf{tangent vector} $v \in \T_m{M}$ is a function $v: \Cinf(M) \to \R$ defined by
-		$$
-			\forall f \in \Cinf(M), \quad v(f) = \frac{\d}{\di{t}} f(\gamma(t)) \Big|_{t=0}
-		$$
-		for a path $\gamma \in \Cinf(\R, M)$ such that $\gamma(0) = m$.
-	\end{definition}
-
-	\begin{notation}
-		Let $\gamma \in \Cinf(J, M)$ (where $J \subset \R$ is an open subset, often taken to be an interval), and $t_0 \in J$.
-		As a shorthand for the path derivative along $\gamma$ at time $t_0$ of a function $f \in \Cinf(M)$ we write 
-		$$
-			\frac{\partial f}{\partial \gamma}(t_0) := \frac{\d}{\di{t}} f(\gamma(t)) \Big|_{t=t_0}
-		$$
-
-		Meaning that for any $m \in M$ a tangent vector $v \in \T_m{M}$ is of the form
-		$$
-			v = \frac{\partial \bullet}{\partial \gamma}(0)
-		$$
-		for a path $\gamma \in \Cinf(\R, M)$ such that $\gamma(0) = m$.
-	\end{notation}
-
-	\todo{local form, standardization}
-
-	Let's define the tangent bundle quickly
-
-	\todo{tangent bundle}
-
 \newpage
 ~
 \newpage

@@ -2,12 +2,148 @@
 
 \begin{document}
 
+\section{Introduction}
+
+	\todo{write it. Introduction to singular foliation through partitionifold. Based on the first chapter of the book [...]}
+
+\section{Notations and definitions}
+
+	\todo{how do we organize this?}
+
+	\subsection{Tangent space}
+
+	\subsection{Vector field}
+
+	\subsection{Tangent map and diffeomorphisms}
+
+	\subsection{Other (things used everywhere)}
+
+		\todo{do we keep this, what do we put here?}
+
+		\begin{itemize}
+			\item M
+			\item J
+		\end{itemize}
+
+
+\section{A first approach: partitionifolds}
+
+	Here we introduce the notion of partitionifold, give some examples, non-examples and properties. We also show {\color{Red}one of the principal shortcomings} of this first definition partitionifold, that'll motivate the introduction of smooth partitionifolds in the next section.
+
+	\begin{definition}
+		A \textbf{partitionifold} of $M$ is a partition of $M$ into \emph{connected immersed submanifolds} called \textbf{leaves} of the partitionifold.
+
+		We write the partitionifold as $(M, L_\bullet)$, or simply $L_\bullet$, where $L_\bullet$ is the partition map
+		$$
+			L_\bullet : M \to \mathcal{P}(M), \quad m \mapsto L_m
+		$$
+		($L_m$ is the leaf containing the point $m$).
+
+		\todo{If not specified otherwise ``$L_\bullet$'' will be considered to be a partitionifold of $M$.}
+	\end{definition}
+
+	This definition is built from the fact that a regular foliation indeed gives a partition of the manifold into immersed submanifolds \todo{talk about rank}. However we can already see some examples of partitionifold that don't come from regular foliations, even though every leaf has the same dimension \todo{point out the singularities}.
+
+	\begin{example}[``T'' partitionifold]
+		We can consider the partitionifold of $\R^2$ given by
+		$$
+		\begin{cases}
+			L_{(x,y)} = \R \times \{y\}            &\text{ if } y \geq 0 \\
+			L_{(x,y)} = \{x\} \times (-\infty, 0)  &\text{ if } y < 0
+		\end{cases}
+		$$
+
+		\todo{drawing}
+	\end{example}
+
+	\begin{example}[Magnetic partitionifold]
+		\textcolor{Red}{maybe not}
+	\end{example}
+
+	\begin{example}[Circle covering of $\R^3$]
+		\textcolor{Red}{maybe not}
+	\end{example}
+
+	\todo{put lasagnas somewhere}
+
+	A really inconvenient thing about this definition is that a path $\gamma J \to \R$ that is tangent to the leaf $L_{\gamma(t)}$ at any time $t \in J$ isn't guaranteed to be contained in a single leaf.
+
+	\begin{example}
+		In the ``T'' partitionifold, we can consider the path
+		$$
+			\gamma: t \in \R \mapsto
+			\begin{cases}
+				(e^{-1/t^2}, 0)  &\text{ if } t < 0 \\
+				(0, 0)           &\text{ if } t = 0 \\
+				(0, e^{-1/t^2})  &\text{ if } t > 0 \\
+			\end{cases}
+		$$
+
+		We have
+		$$
+			\gamma'(t) =
+			\begin{cases}
+				(\frac{1}{t^3} e^{-1/t^2}, 0)  &\text{ if } t < 0 \\
+				(0, 0)                         &\text{ if } t = 0 \\
+				(0, \frac{1}{t^3} e^{-1/t^2})  &\text{ if } t > 0 \\
+			\end{cases}
+		$$
+		
+		The derivative of $\gamma$ at $t=0$ is indeed $(0,0)$ since
+		$$
+			\lim_{t \to \infty} \frac{1}{t^3} e^{-1/t^2} = 0
+		$$
+		{\color{Red}I'm not sure that the continuity argument really works. Otherwise you just do the calculations using the left an right limit definitions for the derivative, and the exponential obliterates the $1/t$, giving you zero}
+
+		We can see that for any $t \in \R$ we indeed have $\gamma'(t) \in \T_\gamma(t) L_{\gamma(t)}$. \\
+		For $t \leq 0$ we have $\gamma(t) \in \R \times \{0\}$ and
+		$$
+			\gamma'(t) \in \R \times \{0\} = \T_{\gamma(t)}\big( \R \times \{0\} \big)
+		$$
+		For $t > 0$ we have $\gamma(t) \in \{0\} \times (-\infty, 0)$ and
+		$$
+			\gamma'(t) \in \{0\} \times \R = \T_{\gamma(t)}\big( \{0\} \times (-\infty, 0) \big)
+		$$
+	\end{example}
+
+	In this example we see that we use the point $(0,0)$, which is in the adherence of the two leaves $\R \times \{0\}$ and $\{0\} \times (-\infty, 0)$, to pivot from one leaf to the other by using a path whose derivative vanishes at time $t=0$ ($\gamma(t) = (0,0)$)
+
+	But you can even find a partitionifold which admits a smooth curve $\gamma: \R \to M$ with a derivative vanishing for some $t$ can then switch between any leaves that have the point $m = \gamma(t)$ in their adherence.
+
+	\begin{example}[Spaghetti hooks]
+		We consider the partitionifold of $\R^2$ given by
+		$$
+		\begin{cases}
+			L_{(x,y)} = \R \times \{y\}            &\text{ if } y \leq 0 \quad \text{(the spaghetti)} \\
+			\text{\todo{describe the hooks somehow}}
+		\end{cases}
+		$$
+	\end{example}
+
+\section{Strengthening the definition: smooth partitionifolds}
+
+	The importance of {\color{Red}capturing the local behaviour of [...]} leads to the following definition.
+
+	\begin{definition}
+		A partitionifold $(M, L_\bullet)$ is called \textbf{smooth partitionifold} if for any $m \in M$ and any tangent vector $v \in \T_m L_m$ there exists a vector field $X \in \X(M)$ such $X(m) = v$ and that is tangent to all the leaves (i.e. for any $p \in M$ $X(p) \in \T_p L_p$)
+
+		\todo{in the book they use a local vector space, we should probably do that too if a local vector space tangent to all leaves can't necessarily be extended to a global one}
+	\end{definition}
+
+	\begin{remark}
+		equivalence with the surjectivity of the evaluation map $X \in \TT(L_\bullet) \mapsto X(m)$ for every $m \in M$.
+	\end{remark}
+
+\newpage
+~
+\newpage
+
 %%% MAX %%%
 
 	\section{Partionifolds}
 		A partionifold on a manifold $M$ is a partition of $M$ into connected immersed submanifolds called leaves. \bigskip
 
-		In the context of partionifolds we define the following map:
+		In the context of partitionifolds we define the following map:
 %
 		\begin{align*}
 			L_\bullet : M \to \mathcal{P}(M), \quad m \mapsto L_m
@@ -17,14 +153,15 @@
 
 		You can have curves with a non-vanishing derivative which switch between leaves. Let the partionifold be given by smooth hooks (to pick up spagetthi with, don't worry they won't fall off) and the lines $t \mapsto (t, c)$ for all $c \leq 0$. Then the curve which follows one hook to the edge and then continuous along the $x$-axis is non-vanishing and switches between leaves. \bigskip
 
-		\subsection{Straightening lemma}
+		\begin{prop}[Straightening lemma]
 			Let $X \in \mathfrak{X}(M)$ be a non-vanishing vector field. Then there is a coordinate chart $\phi = (x_1, \ldots, x_n) : U \subseteq M \to V \subseteq \mathbb{R}^n$ such that:
 			%
 			\begin{align*}
 				X(m) = \frac{\partial}{\partial x_1}(m) = d \phi_m^{-1}(e_1)
 			\end{align*}
+		\end{prop}
 
-			\textbf{Proof:} \\
+		\begin{proof}
 				We begin with an arbitrary coordinate chart $\psi = (y_1, \ldots, y_n) : U \to V$ of $M$ around $m_0 \in M$. In this chart we find that:
 				%
 				\begin{align*}
@@ -63,7 +200,7 @@
 
 				(This is essentially since moving $\sum \tilde{\alpha}_i e_i$ to $e_1$ is rotating and scaling depending on $v$) \bigskip
 
-				Now we want to find $\rho : V \to V$ s.t.\ $d \rho_v = T_v$, which is equivalent to finding $\rho_i$:s satisfying:
+				Now we want to find $\rho : V \to V$ s.t.\ $d \rho_v = T_v$, which is equivalent to finding $\rho_i$ satisfying:
 				%
 				\begin{align*}
 					\nabla \rho_i = (\tau_{ij})_j
@@ -96,9 +233,7 @@
 				\end{gather*}
 
 				which proves the statement.
-
-				\begin{flalign*}&&\square\end{flalign*}
-
+		\end{proof}
 
 		\subsection{Proposition 1.1.11}	
 		Let $X$ be a given vector field in $\in \mathfrak{T}(L_\bullet)$, that is:
@@ -222,7 +357,7 @@
 			U'_i := x_i^{-1}(B_i) \qquad i \in \{0, \ldots, N - 1\}
 		\end{align*}
 
-		and $U' := x_0^{-1}(B_\varepsilon(0))$ we may observe that see that $\phi_t^X|_{U'}$ splits as:
+		and $U' := x_0^{-1}(B_\varepsilon(0))$ we may observe that $\phi_t^X|_{U'}$ splits as:
 		%
 		\begin{align*}
 			\phi_t^X|_{U'} = \phi_{r_N - r_{N - 1}}^X \circ \ldots \circ \phi_{r_1 - r_0}^X \circ \phi_{r_0}^X|_{U'} = \phi_{r_N - r_{N - 1}}^X \circ \ldots \circ \phi_{r_1 - r_0}^X|_{U_0} \circ \phi_{r_0}^X|_{U'}

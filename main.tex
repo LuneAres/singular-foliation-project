@@ -23,6 +23,8 @@
 
 \tableofcontents
 
+\newpage
+
 \section{Introduction}
     Singular foliations are a generalization of regular foliations in which leaves are allowed to have different dimensions. Whilst regular foliations have sparked great interest and research for a long time, singular foliations have not been as comprehensively studied until very recently. This might have to do with the difficulty of finding a good definition for them. This is precisely the mission which was undertaken by a few mathematicians in the 60s and 70s. After the research into the topic lost its impetus and lay dormant until 2000s when singular foliations saw a sort of revival coming from non-commutative geometry.
 
@@ -32,8 +34,6 @@
     In this section we recall some of the basic definitions of differential geometry and introduce the notation we're gonna use in the rest of the report, especially about tangent spaces vector fields.
 
     Throughout this report the letter $M$ will be reserved for a manifold of dimension $d$.
-
-	\todo{preliminary notations}
 
 	Now we recall one of the definitions of a tangent vector.
 
@@ -115,18 +115,28 @@
 		\end{cases}
 		$$
 
-		\todo{drawing}
-	\end{example}
-
-	\begin{example}[Magnetic partitionifold]
-		\textcolor{Red}{maybe not}
+		\begin{figure}[H]
+		    \centering
+		    \includegraphics[width=0.8\linewidth]{T-foliation.png}
+		    \caption{"T"-partitionifold}
+		    \label{fig:enter-label}
+		\end{figure}
 	\end{example}
 
 	\begin{example}[Circle covering of $\R^3$]
-		\textcolor{Red}{maybe not}
+		It is possible to fill $\R^3$ with disjoint circles. 
 	\end{example}
 
-	\todo{put lasagnas somewhere}
+    \begin{example}[Isolated lasagna]
+        The following is a partitionifold of $\R^3$:
+%
+        \begin{align*}
+            \begin{cases}
+                L_{(0, 0, 0)} = \R^2 \times \{0\} \\
+                L_{(0, y, z)} = \R \times \{y\} \times\{z\} &\text{if $z \neq 0$} 
+            \end{cases}
+        \end{align*}
+    \end{example}
 
 	A really inconvenient thing about this definition is that a path $\gamma : J \to \R$ that is tangent to the leaf $L_{\gamma(t)}$ at any time $t \in J$ isn't guaranteed to be contained in a single leaf.
 
@@ -151,13 +161,13 @@
 			\end{cases}
 		$$
 		
-		The derivative of $\gamma$ at $t=0$ is indeed $(0,0)$ since
+		The derivative of $\gamma$ at $t=0$ is in fact $0$ as specified since:
 		$$
-			\lim_{t \to 0} \frac{1}{t^3} e^{-1/t^2} = 0
+			\lim_{t \to 0^-} \frac{1}{t} e^{-1/t^2} = 0 = \lim_{t \to 0^+} -\frac{1}{t} e^{-1/t^2}
 		$$
-		{\color{Red}I'm not sure that the continuity argument really works. Otherwise you just do the calculations using the left an right limit definitions for the derivative, and the exponential obliterates the $1/t$, giving you zero}
 
-		We can see that for any $t \in \R$ we indeed have $\gamma'(t) \in \T_\gamma(t) L_{\gamma(t)}$. \\
+		We can see that for any $t \in \R$ we indeed have $\gamma'(t) \in \T_\gamma(t) L_{\gamma(t)}$.
+        
 		For $t \leq 0$ we have $\gamma(t) \in \R \times \{0\}$ and
 		$$
 			\gamma'(t) \in \R \times \{0\} = \T_{\gamma(t)}\big( \R \times \{0\} \big)
@@ -184,13 +194,17 @@
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.5\linewidth]{images/spaghetti-hooks.png}
+        \includegraphics[width=0.7\linewidth]{spaghetti-hook.png}
         \caption{Spaghetti hook foliation}
         \label{spaghetti-hooks}
     \end{figure}
 
+    \begin{definition}
+        A vector field $X$ is said to be \textbf{tangent to $L_\bullet$} if for each $m \in M$ we have that $X(m) \in T_m L_m$. We let $\mathfrak{T}(L_\bullet)$ be the set of all such vector fields on $M$.
+    \end{definition}
+
     \begin{prop}[Not leaving leaves]
-		    bla bla
+	   If there is a vector field $X \in \mathfrak{T}(L_\bullet)$ then all integral curves of $X$ lie in one and only one leaf of $L_\bullet$.
     \end{prop}
 
     \begin{proof}
@@ -313,12 +327,10 @@
 
 \section{Strengthening the definition: smooth partitionifolds}
 
-	The importance of {\color{Red}capturing the local behaviour of [...]} leads to the following definition.
+	As we have seen earlier partitionifolds may exhibit some very "non-smooth" behavior, e.g.\ leaves switching direction in infinitely small neighborhoods. We try to mend this by making the following definition:
 
 	\begin{definition}
 		A partitionifold $(M, L_\bullet)$ is called \textbf{smooth partitionifold} if for any $m \in M$ and any tangent vector $v \in \T_m L_m$ there exists a vector field $X \in \X(U)$ defined on a nbhd $U$ of $m$ s.t.\ $X(m) = v$ and that is tangent to all the leaves in $U$, i.e.\ $X(p) \in \T_p L_p$ for any $p \in U$.
-
-		\todo{in the book they use a local vector space, we should probably do that too if a local vector space tangent to all leaves can't necessarily be extended to a global one}
 	\end{definition}
 
 	\begin{remark}
@@ -328,10 +340,6 @@
 \newpage
 ~
 \newpage
-
-%%% MAX %%%
-
-	\section{Partionifolds}
 		
 
 \newpage

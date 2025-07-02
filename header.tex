@@ -1,8 +1,19 @@
 \documentclass[12pt]{article}
 
+%%% Packages %%%
+
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+
+\usepackage[dvipsnames]{xcolor}
+
+%%% Formatting/Configs %%%
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+%%% Macros %%%
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -10,7 +21,36 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 
-\let\d\relax
-\DeclareMathOperator{\d}{d\!}
+\newcommand{\X}{\mathfrak{X}}
+\newcommand{\Cinf}{C^\infty}
+\newcommand{\T}{\mathrm{T}}
 
-\setlength{\parindent}{0pt}
+\newcommand{\ccdot}[1][]{\,\cdot\,}
+
+\let\d\relax
+\DeclareMathOperator{\d}{d}
+\newcommand{\di}[1][]{\operatorname{d}_{#1}\def\temp{#1}\!}
+\DeclareMathOperator{\id}{id}
+
+
+%%% Elias' crap %%%
+
+\newcommand{\todo}[1]{\textcolor{NavyBlue}{[todo: #1]}}
+\newcommand{\beware}[1]{\textcolor{Red}{[beware: #1]}}
+\newcommand{\question}[1]{\textcolor{Green}{[question: #1]}}
+
+%%% Environments %%%
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+\newtheorem*{notation}{Notation}
+
+\theoremstyle{plain}
+\newtheorem*{thm}{Theorem}
+\newtheorem*{prop}{Proposition}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{cor}{Corrolary}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}

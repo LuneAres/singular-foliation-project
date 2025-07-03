@@ -3,3 +3,7 @@
 *.pdf
 *.synctex.*
 *.sublime-*
+*.bbl
+*.bcf
+*.blg
+*.run.xml

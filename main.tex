@@ -32,6 +32,8 @@
 
     In this report we will study singular foliations from the lens of so called partitionifolds. We will first look at their general case and then also with a sort of smooth condition imposed on them.
 
+    We're following \cite{laurent-gengouxInvitationSingularFoliations2024a}.
+
 \section{Notations and definitions}
     In this section we recall some of the basic definitions of differential geometry and introduce the notation we're gonna use in the rest of the report, especially about tangent spaces vector fields.
 
@@ -64,13 +66,50 @@
 		for a path $\gamma \in \Cinf(\R, M)$ such that $\gamma(0) = m$.
 	\end{notation}
 
-	\todo{local form, standardization}
+	If we fix a coordinate chart $(U, x)$ around $m$ then the direction can be explicitely expressed as a vector in $\R^d$.
+
+	For every $t \in \gamma^{-1}(U) \subset \R$ we have
+	$$
+		f(\gamma(t)) = \big( (f \circ x^{-1}) \circ (x \circ \gamma) \big)(t)
+	$$
+	where:
+	\begin{itemize}
+		\item $(x \circ \gamma) \in \Cinf(\R, \R^d)$
+		\item $(f \circ x^{-1}) \in \Cinf(\R^d, \R)$
+	\end{itemize}
+	By the chain rule we then have
+	$$
+		v(f) = \underbrace{\di[x(m)] \big( f \circ x^{-1} \big)}_{\R^d \to \R} \bigg[ \underbrace{\frac{\d}{\di{t}} \big( x \circ \gamma \big)(t) \Big|_{t=0}}_{\in \R^d} \bigg]
+	$$
+
+	If we write
+	$$
+		\frac{\d}{\di{t}} \big( x \circ \gamma \big)(t) \Big|_{t=0} = \sum_{i=1}^d a_i e_i \in \R^d
+	$$
+	for some $(a_i)_{1 \leq i \leq d}$ we have
+	$$
+		v(f) = \sum_{i=1}^d a_i \di[x(m)](f \circ x^{-1})[e_i]
+	$$
+
+	We introduce the notation $\frac{\partial{f}}{\partial{x_i}}: U \to \R$ for directional derivative using the coordinate chart $x$ on $U$. We write
+	\begin{align*}
+		\frac{\partial{f}}{\partial{x_i}}(m) &= \frac{\partial{(f \circ x^{-1})}}{\partial{e_i}}(x(m)) \\
+		                                     &= \di[x(m)](f \circ x^{-1})[e_i] \\
+		                                     &= \frac{\d}{\di{t}} \big( f \circ x^{-1} \big)(x(m) + t e_i) \Big|_{t=0} \\
+		                                     &= \lim_{t \to 0} \frac{\big( f \circ x^{-1} \big)(x(m) + t e_i) - f(m)}{t}
+	\end{align*}
+
+	So we can rewrite:
+	$$
+		v(f) = \sum_{i=1}^d a_i \frac{\partial f}{\partial{x_i}}(m)
+	$$
+
+	We can also write $v$ like this:
+	$$
+		v = \sum_{i=1}^d a_i \frac{\partial \,\bullet\,}{\partial{x_i}}(m)
+	$$
 
 	Let's define the tangent bundle quickly
-
-	\todo{tangent bundle}
-    
-	\todo{how do we organize this?}
 
 	\subsection{Vector field}
 
@@ -80,14 +119,6 @@
 		$$
 			X(\gamma(t)) = \frac{\partial \bullet}{\partial \gamma}(t)
 		$$
-		
-		\todo{existence of an integral curve passing through any point where the vector field doesn't vanish: straightening lemma then pullback of straight lines (well, if the vector field vanishes we have the fixed curve)}
-
-		\todo{unicity of such an integral curve: I don't know}
-
-		\todo{def of a complete vector field}
-
-		\todo{def of a maximal integral curve}
 
 		We say that the integral curve $\gamma$ is \textbf{starting from} the point $\gamma(0) \in M$.
 	\end{definition}
@@ -105,25 +136,13 @@
 	Because of this we can define the notion of maximal integral curve.
 
 	\begin{definition}
-		For some vector field $X \in \X(M)$ The maximal integral curve starting from a point $m \in M$ is the integral biggest integral curve $\gamma$
+		For some vector field $X \in \X(M)$ The maximal integral curve starting from a point $m \in M$ is the integral biggest integral curve $\gamma$ such that its great.
 	\end{definition}
-
-	\subsection{Tangent map and diffeomorphisms}
-
-	\subsection{Other (things used everywhere)}
-        
-
-		\todo{do we keep this, what do we put here?}
-
-		\begin{itemize}
-			\item M
-			\item J
-		\end{itemize}
 
 
 \section{A first approach: Partitionifolds}
 
-	Here we introduce the notion of partitionifold, give some examples, non-examples and properties. We also show {\color{Red}one of the principal shortcomings} of this first definition partitionifold, that'll motivate the introduction of smooth partitionifolds in the next section.
+	Here we introduce the notion of partitionifold, give some examples, non-examples and properties. We also show one of the principal shortcomings of this first definition partitionifold, that'll motivate the introduction of smooth partitionifolds in the next section.
 
 	\begin{definition}
 		A \textbf{partitionifold} of $M$ is a partition of $M$ into \emph{connected immersed submanifolds} called \textbf{leaves} of the partitionifold.
@@ -134,10 +153,10 @@
 		$$
 		($L_m$ is the leaf containing the point $m$).
 
-		\todo{If not specified otherwise ``$L_\bullet$'' will be considered to be a partitionifold of $M$.}
+		If not specified otherwise ``$L_\bullet$'' will be considered to be a partitionifold of $M$.
 	\end{definition}
 
-	This definition is built from the fact that a regular foliation indeed gives a partition of the manifold into immersed submanifolds \todo{talk about rank}. However we can already see some examples of partitionifold that don't come from regular foliations, even though every leaf has the same dimension \todo{point out the singularities}.
+	This definition is built from the fact that a regular foliation indeed gives a partition of the manifold into immersed submanifolds \todo{talk about rank}. However we can already see some examples of partitionifold that don't come from regular foliations, even though every leaf has the same dimension.
 
 	\begin{example}[``T'' partitionifold]
 		We can consider the partitionifold of $\R^2$ given by
@@ -150,7 +169,7 @@
 
 		\begin{figure}[H]
 		    \centering
-		    \includegraphics[width=0.8\linewidth]{T-foliation.png}
+		    \includegraphics[width=0.5\linewidth]{T-foliation.png}
 		    \caption{"T"-partitionifold}
 		    \label{fig:enter-label}
 		\end{figure}
@@ -227,7 +246,7 @@
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.7\linewidth]{spaghetti-hook.png}
+        \includegraphics[width=0.5\linewidth]{spaghetti-hook.png}
         \caption{Spaghetti hook foliation}
         \label{spaghetti-hooks}
     \end{figure}
@@ -367,13 +386,8 @@
 	\end{definition}
 
 	\begin{remark}
-		equivalence with the surjectivity of the evaluation map $X \in \TT(L_\bullet) \mapsto X(m)$ for every $m \in M$.
+		That's equivalent to the surjectivity of the evaluation map $X \in \TT(L_\bullet) \mapsto X(m)$ for every $m \in M$.
 	\end{remark}
-
-\newpage
-~
-\newpage
-		
 
 \newpage
 
@@ -461,205 +475,6 @@
                 which proves the statement.
         \end{proof}
 
-%%% ELIAS %%%
-\newpage
-~
-\newpage
-
-\section{Random notes}
-
-	A smooth curve $\gamma: \R \to M$ with a derivative vanishing for some $t$ at some point can then switch between any leaves that have the point $m = \gamma(t)$ in their adherence
-
-	Questions:
-	\begin{itemize}
-		\item can a curve with a non-vanishing derivative switch between leaves ? Yes
-		\item why are we interested in those curves?
-		\item what about a derivative vanishing on some interval? Not interesting: the path just stops in this time period, so we only get one possible branching point anyway.
-		\item what if you don't have a whole partition?
-	\end{itemize}
-
-
-	\subsection{Tangent space and vector fields}
-
-		To (maybe) put in there:
-		\begin{itemize}
-			\item tangent vector: path derivative, local/coordinate version, (equivalence class of paths)
-			\item tangent map: $\phi: M \to N$, $\T{\phi}: \T{M} \to \T{N}$
-			\item tangent bundle: charts are $\big( \T(U_\alpha), \T(\phi_\alpha) \big)$ for the atlas $\big\{ (U_\alpha, \phi_\alpha) \big\}_\alpha$ of $M$
-			\item vector field: smooth map $X: M \to \T{M}$, local version as directional derivations, action on $\Cinf(M)$ ($X: M \times \Cinf(M) \to \R$, so we can also see it as $X: \Cinf(M) \to \Cinf(M)$ \todo{take a look at the smoothness involved in the manipulation (oh, it probably need $\Cinf$ and not just ``differentiable'' for the image to still be differentiable)})
-			\item integral curve
-			\item Lie bracket
-		\end{itemize}
-
-		For any $m \in M$ the tangent space $\T_m{M}$ is the set of ``directional derivatives'' (the direction is given by a path in $m$).
-		Meaning that any $v \in \T_m{M}$ is a function $v: \Cinf(M) \to \R$ defined by
-		$$
-			\forall f \in \Cinf(M), \quad v(f) = \frac{\d}{\di{t}} f(\gamma(t)) \Big|_{t=0}
-		$$
-		for a path $\gamma \in \Cinf(\R, M)$ such that $\gamma(0) = m$.
-
-		\todo{A word about equivalence classes of paths?}
-
-		\todo{Let's introduce the notation $\frac{\partial{f}}{\partial{\gamma}}(m) := v(f)$}
-
-		If we fix a coordinate chart $(U, x)$ around $m$ then the direction can be explicitely expressed as a vector in $\R^d$.
-
-		For every $t \in \gamma^{-1}(U) \subset \R$ we have
-		$$
-			f(\gamma(t)) = \big( (f \circ x^{-1}) \circ (x \circ \gamma) \big)(t)
-		$$
-		where:
-		\begin{itemize}
-			\item $(x \circ \gamma) \in \Cinf(\R, \R^d)$
-			\item $(f \circ x^{-1}) \in \Cinf(\R^d, \R)$
-		\end{itemize}
-		By the chain rule we then have
-		$$
-			v(f) = \underbrace{\di[x(m)] \big( f \circ x^{-1} \big)}_{\R^d \to \R} \bigg[ \underbrace{\frac{\d}{\di{t}} \big( x \circ \gamma \big)(t) \Big|_{t=0}}_{\in \R^d} \bigg]
-		$$
-
-		If we write
-		$$
-			\frac{\d}{\di{t}} \big( x \circ \gamma \big)(t) \Big|_{t=0} = \sum_{i=1}^d a_i e_i \in \R^d
-		$$
-		for some $(a_i)_{1 \leq i \leq d}$ we have
-		$$
-			v(f) = \sum_{i=1}^d a_i \di[x(m)](f \circ x^{-1})[e_i]
-		$$
-
-		We introduce the notations $\frac{\partial{f}}{\partial{x_i}}: U \to \R$ for directional derivative using the coordinate chart $x$ on $U$. We write
-		\begin{align*}
-			\frac{\partial{f}}{\partial{x_i}}(m) &= \frac{\partial{(f \circ x^{-1})}}{\partial{e_i}}(x(m)) \\
-			                                     &= \di[x(m)](f \circ x^{-1})[e_i] \\
-			                                     &= \frac{\d}{\di{t}} \big( f \circ x^{-1} \big)(x(m) + t e_i) \Big|_{t=0} \\
-			                                     &= \lim_{t \to 0} \frac{\big( f \circ x^{-1} \big)(x(m) + t e_i) - f(m)}{t}
-		\end{align*}
-		\todo{clarify/choose notations}
-
-		$$
-			\frac{\partial{f}}{\partial{x_i}}(m) \quad \frac{\partial{f}}{\partial{x_i}}\Big|_m \quad \frac{\partial}{\partial{x_i}} f \Big|_m \quad \frac{\partial}{\partial{x_i}} \Big|_m f
-		$$
-
-		So we can rewrite:
-		$$
-			v(f) = \sum_{i=1}^d a_i \frac{\partial f}{\partial{x_i}}(m)
-		$$
-
-		We can also write $v$ like this:
-		$$
-			v = \sum_{i=1}^d a_i \frac{\partial \,\bullet\,}{\partial{x_i}}(m)
-		$$
-
-		Let $\phi = (\phi_1, \ldots, \phi_d): x(U) \to \phi(x(U))$ any diffeomorphism.\\
-		We can consider the chart $(U, y)$ where $y = \phi \circ x$.
-		% So $(y_1, \ldots, y_n) = (\phi_1 \circ x, \ldots, \phi_n \circ x)$.
-
-		Using this chart we have
-		\begin{align*}
-			v(f) &= \di[y(m)] \big( f \circ y^{-1} \big) \bigg[ \frac{\d}{\di{t}} \big( y \circ \gamma \big)(t) \Big|_{t=0} \bigg] \\
-			     &= \di[\phi(x(m))] \big( f \circ x^{-1} \circ \phi^{-1} \big) \bigg[ \frac{\d}{\di{t}} \big( \phi \circ x \circ \gamma \big)(t) \Big|_{t=0} \bigg]
-		\end{align*}
-
-		So in order to have $v = \frac{\partial{\bullet}}{\partial{y_1}}$ we want
-		$$
-			\frac{\d}{\di{t}} \big( \phi \circ x \circ \gamma \big)(t) \Big|_{t=0} = e_1
-		$$
-
-		Using the chain rule we have
-		\begin{align*}
-			\frac{\d}{\di{t}} \big( \phi \circ x \circ \gamma \big)(t) \Big|_{t=0} &= \di[x(m)]{\phi} \Big[ {\textstyle\sum_{i=1}^d a_i e_i} \Big] \\
-			                                                                       &= \frac{\d}{\di{t}} \phi\big( x(m) + {\textstyle t \sum_{i=1}^d a_i e_i} \big) \Big|_{t=0}
-		\end{align*}
-
-		Let's now consider a vector field $X \in \X(M)$ and $X|_U$ its restriction to $U$.
-
-		For any point $p \in U$, we have a family $(a_i(p))_{1 \leq i \leq d}$ such that
-		$$
-			X(p) = \sum_{i=1}^d a_i(p) \frac{\partial \,\bullet\,}{\partial{x_i}}(p)
-		$$
-
-		The goal will be to find a 
-
-		Vector fields as 
-
-\section{Notations}
-
-	\begin{itemize}
-		\item ``smooth'' means differentiable?
-		\item ``manifold'' means smooth real manifold
-		\item We fix $M$ a $n$-dimensional manifold
-		\item We will mainly use two notations for coordinate charts on an open subset $U \subset M$:
-			\begin{itemize}
-				\item $(U, \phi)$ where $\phi: U \to \phi(U) \subset \R^n$ is a diffeomorphism
-				\item $(U, x_1, \ldots, x_n)$, whith functions $x_i: U \to \R$ such that the map $x := (x_1, \ldots, x_n) : U \to \R^n$ is a diffeomorphism into its image
-			\end{itemize}
-		\item \todo{chart around a point}
-		\item $\X(M) = \Gamma(TM)$ is the set of vector fields over $M$
-		\item for any manifold $N$, we note $\Cinf(N, M)$ the set of smooth functions $N \to M$ \beware{the notation $\Cinf$ isn't coherent with the fact that ``smooth'' only means ``differentiable''}
-		\item We will often talk about smooth paths, using $\Cinf(\R, M)$, or $\Cinf(J, M)$ with $J$ an open subset/interval of $\R$
-		\item $\Cinf(M)$ the smooth functions $M \to \R$
-		\item path-derivative (i.e. tangent vector):$\frac{\partial{f}}{\partial{\gamma}}(t) \in \T_{\gamma(t)}{M}$
-		\item path-derivative for some cooridnate chart $(U,x)$ (i.e. tangent vector): $\frac{\partial{f}}{\partial{x_i}}(m) = \di[x(m)](f \circ x^{-1})[e_i] \in \T_m{M}$
-	\end{itemize}
-
-\section{Kinda clean?}
-
-	We want
-
-	\begin{lemma}[Straightening lemma]
-		Let $X \in \X(M)$. There 
-	\end{lemma}
-
-\section{List of steps}
-	
-	\begin{itemize}
-		\item 
-	\end{itemize}
-
-	I proposed the notation
-	$$
-		X(m)(f) = \frac{\partial{f}}{\partial{\gamma_m}}{\color{Red}(m)} = \frac{\d}{\di{t}} f\big( \gamma_m(t) \big) \bigg|_{\color{Red}t=0} \in \T_m{M}
-	$$
-	for some smooth path $\gamma_m: J \subset \R \to M$ such that $\gamma_m(0) = m$.
-
-	I find the notation strange in the sense that we impose $\gamma_m(0) = m$ and take the path derivative at $t=0$. So I feel it should rather be one of the two following:
-	$$
-		\frac{\partial{f}}{\partial{\gamma_m}}{\color{Red}(0)} \quad \text{or even simply} \quad \frac{\partial{f}}{\partial{\gamma_m}}
-	$$
-
-	The first one as the advantage of being able to write the following definition:
-
-	\begin{definition}
-		Let $X \in \X(M)$ and $t \in \R$.
-		Any point $m \in M$ can be associated with the maximal integral curve $\gamma_m: J_m \to \R$ from $m$ ($J_m$ is an open interval around $0$, and $\gamma_m(0)=m$).\\ For any $t$ we can define $U_t \subset M$ the set of $m \in M$ such that $t \in J_m$ \todo{is $U_t$ open?}.
-		This is the domain of definition of the map $\phi^X_t: U_t \to M$ dedfined by
-		$$
-			\phi^X_t(m) := \gamma_m(t)
-		$$
-
-		We call the $\phi^X_t$ the \textbf{flow of $X$ at time $t$}.
-
-		\todo{remark: $\phi^X_0 = \id_U$ (can be defined for every point)}
-
-		\todo{if necessary, change 0 for $t_0$}
-
-		\todo{is the flow a diffeomorphism into its image?}
-
-		\todo{existence of a flow around a point (see takes on that in todos below)}
-
-		\todo{using the straightening lemma we can always find a chart $(U^m,x^m)$ around any $m \in M$ such that $X$ is straightened (i.e. $X|_{U_m} = \frac{\partial}{\partial x^m_1}$), and restricting $U_m$ if needed we can consider that $x(U) \subset \R^n$ is a filled open square. Then any point in $p \in U_m$ admits an integral curve defined on the same interval $J_m$. If you take $U$ contained in a compact subset of $\R^n$ then the existence of an interval $J$ satisfying}
-
-		\todo{if $U$ is contained in a compact set, then the existence of an interval $J$ flow}
-	\end{definition} 
-
-	\todo{existence of a }
-
-	\begin{definition}
-		$[X,Y](f) = X(Y(f)) - Y(X(f))$
-
-		$[X,Y](m)(f) = X(m)(p \mapsto Y(p)(f)) - Y(m)(p \mapsto X(p)(f))$
-	\end{definition}
-
-	\todo{flow following interpretation}
+\printbibliography
 
 \end{document}
